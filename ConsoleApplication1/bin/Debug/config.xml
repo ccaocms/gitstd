@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CTIS version="1.0.0">
+  <SocketIP>10.0.0.200</SocketIP>
+  <SocketPort>8181</SocketPort>
+  <Secure>Enable</Secure>
+  <Cert>server.p12</Cert>
+  <PWD>123456</PWD>
+  <RootCert>ca.crt</RootCert>
+  <Delete>False</Delete>
+  <Store>AuthRoot</Store>
+  <AutoDisconnect>True</AutoDisconnect>
+  <AutoDisconnectTimeout>300000</AutoDisconnectTimeout>
+  <COMWriteTimeout>500</COMWriteTimeout>
+  <COMReadTimeout>2500</COMReadTimeout>
+  <EnableCheckServerLoop>False</EnableCheckServerLoop>
+  <CheckServerInterval>5000</CheckServerInterval>
+  <FirefoxRootCert>ca-cert.pem</FirefoxRootCert>
+  <FirefoxCert>server.p12</FirefoxCert>
+  <FirefoxPWD>123456</FirefoxPWD>
+  <UsingFirefox>False</UsingFirefox>
+</CTIS>
