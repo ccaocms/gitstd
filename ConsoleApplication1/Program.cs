@@ -146,7 +146,7 @@ namespace ConsoleApplication1
             JObject x = JObject.Parse(v);
             //Program.SetServiceConfig(x);
 
-            Common_SocketServer cs = new Common_SocketServer("127.0.0.1", 33333);
+            Common_SocketServer cs = new Common_SocketServer("192.168.31.226", 33333);
             cs.setConnection();
 
             Console.ReadLine();

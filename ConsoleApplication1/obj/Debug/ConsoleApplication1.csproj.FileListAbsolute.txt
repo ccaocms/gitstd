@@ -5,3 +5,10 @@
 \\mac\home\documents\visual studio 2015\Projects\xmlprj\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 \\mac\home\documents\visual studio 2015\Projects\xmlprj\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
 \\mac\home\documents\visual studio 2015\Projects\xmlprj\ConsoleApplication1\bin\Debug\Newtonsoft.Json.dll
+C:\std\gitstd\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\std\gitstd\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\std\gitstd\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\std\gitstd\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\std\gitstd\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\std\gitstd\ConsoleApplication1\bin\Debug\Newtonsoft.Json.dll
+C:\std\gitstd\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache

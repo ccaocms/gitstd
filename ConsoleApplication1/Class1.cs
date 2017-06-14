@@ -168,6 +168,7 @@ namespace CMSTIP
                 }
                 catch {
                     Console.WriteLine("server accept() error");
+                    Console.WriteLine("listenclientconnect end");
                     return;
                 }
                 
@@ -193,6 +194,7 @@ namespace CMSTIP
                 }
                 Thread.Sleep(1000);
             }
+            Console.WriteLine("listenclientconnect end");
         }
 
 
@@ -205,10 +207,11 @@ namespace CMSTIP
             while (reciveblock==true)
             {
 
-                if (client != null && client.Connected)
+                if (client != null && client.Connected)//only do when client is available and connected
                 {
                     
                     Console.WriteLine("client is not null");
+                    client.ReceiveTimeout = 10000;//10seconds receive timeout
                     //receive data added receive timeout, if exception happend continue
                     try
                     {
@@ -216,14 +219,18 @@ namespace CMSTIP
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message + "\r\nshould be OK\r\n");
-                        continue;
+                        /*any kind of exception will causing clinet disconnect and this thread been stopped*/
+                        Console.WriteLine(e.Message + "\r\nshould not be OK\r\n");
+                        ReleaseSocket(client);
+                        Console.WriteLine("*********************\r\nreceivemsg end\r\n********************");
+                        break;//stop the thread 
+                        
                     }
 
                     Console.WriteLine("Socket Server get info: " + System.Text.Encoding.Default.GetString(result));
 
                     
-                    if (receiveNumber > 0)
+                    if (receiveNumber > 0)//during the thread release, the receive api still returns so adding logic here to prevent exceptions
                     {
                         SendMsg(clientSocket, "Hello from Server");
                     }
@@ -237,6 +244,7 @@ namespace CMSTIP
                    
                
             }
+            Console.WriteLine("*********************\r\nreceivemsg end\r\n********************");
         }
 
         private static void SendMsg(object clientSocket, String msg)
@@ -257,39 +265,29 @@ namespace CMSTIP
         {
             if (server != null)
             {
-                try
+                if (client != null&&client.Connected)//wait until receive timeout to let client disconnect
                 {
-                    if (client!=null)
-                    {
-                        client.Shutdown(SocketShutdown.Both);
-                        Console.WriteLine("commer server shutdown");
-                    }
-
+                    Thread.Sleep(11000);
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine("commer server shutdown" + e.Message);
-                }
-                if (ClientCheckingTimer != null)
+                
+                if (ClientCheckingTimer != null)//stop check timer
                 {
                     ClientCheckingTimer.Stop();
                     ClientCheckingTimer.Close();
                 }
-                if (receiveThread!=null)
+                if (receiveThread!=null)//stop all thread
                 {
                     reciveblock = false;
-                    Thread.Sleep(6000);
                     receiveThread.Abort();
                     client = null;
                     threadblock = false;
 
-                    Thread.Sleep(6000);
+                    
                 }
                 
-                 // myThread.Abort();
                 try
                 {
-                    server.Close();
+                    server.Close();//close server, this will trigger server.accept() exception and it is the only way to close server right now
                 }
                 catch (Exception e)
                 {
